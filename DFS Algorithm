@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+#define MAX 100 // Maximum number of vertices
+
+// Function to perform DFS recursively
+void DFS(int graph[MAX][MAX], int visited[], int vertex, int vertices) {
+    printf("%d ", vertex); // Print the current vertex
+    visited[vertex] = 1; // Mark it as visited
+
+    for (int i = 0; i < vertices; i++) {
+        if (graph[vertex][i] == 1 && !visited[i]) { // Visit unvisited adjacent nodes
+            DFS(graph, visited, i, vertices);
+        }
+    }
+}
+
+// Main function
+int main() {
+    int graph[MAX][MAX] = {
+        {0, 1, 1, 0, 0},
+        {1, 0, 0, 1, 1},
+        {1, 0, 0, 1, 0},
+        {0, 1, 1, 0, 1},
+        {0, 1, 0, 1, 0}
+    };
+
+    int vertices = 5;
+    int startVertex = 0;
+    int visited[MAX] = {0}; // Initialize visited array
+
+    printf("DFS Traversal: ");
+    DFS(graph, visited, startVertex, vertices);
+    printf("\n");
+
+    return 0;
+}
